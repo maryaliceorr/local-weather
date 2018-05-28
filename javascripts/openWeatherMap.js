@@ -6,11 +6,23 @@ const setKeys = (key) => {
   openWeatherMapKey = key;
 };
 
-const getOpenWeatherMapData = (text) => {
-  return new Promise((resolve, reject) => {
-    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${text},us&appid=${openWeatherMapKey}&units=imperial`)
+// const getFiveDay = (zip) => {
+//   return new Promise((resolve, reject) => {
+//     $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&appid=${openWeatherMapKey}&units=imperial`)
+//       .done((result) => {
+//         resolve(result);
+//       })
+//       .fail((err) => {
+//         reject(err);
+//       });
+//   });
+// };
+
+const getOneDay = (zip) => {
+  return new Promise ((resolve, reject) => {
+    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${openWeatherMapKey}`)
       .done((result) => {
-        resolve(result.results);
+        resolve(result);
       })
       .fail((err) => {
         reject(err);
@@ -19,14 +31,24 @@ const getOpenWeatherMapData = (text) => {
 };
 
 const showWeatherData = (searchText) => {
-  getOpenWeatherMapData(searchText)
+  getOneDay(searchText)
     .then((result) => {
-      dom.domString(result);
+      dom.domStrang(result);
     })
     .catch((err) => {
       console.error('nope, no data for you', err);
     });
 };
+
+// const showWeatherData = (searchText) => {
+//   getFiveDay(searchText)
+//     .then((result) => {
+//       dom.domStrang(result.list);
+//     })
+//     .catch((err) => {
+//       console.error('nope, no data for you', err);
+//     });
+// };
 
 module.exports = {
   setKeys,

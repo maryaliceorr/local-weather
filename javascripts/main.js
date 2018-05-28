@@ -1,3 +1,5 @@
-const data = require('./data');
+const events = require('./events');
+const apiKeys = require('./apiKeys');
 
-data.initializer();
+events.initializer();
+apiKeys.getThemKeys();
