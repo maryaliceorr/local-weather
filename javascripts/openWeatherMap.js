@@ -6,11 +6,11 @@ const setKeys = (key) => {
   openWeatherMapKey = key;
 };
 
-const getOpenWeatherMapData = (text) => {
+const getCurrentDayData = (zip) => {
   return new Promise((resolve, reject) => {
-    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${text},us&appid=${openWeatherMapKey}&units=imperial`)
+    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${openWeatherMapKey}`)
       .done((result) => {
-        resolve(result.results);
+        resolve(result);
       })
       .fail((err) => {
         reject(err);
@@ -19,9 +19,9 @@ const getOpenWeatherMapData = (text) => {
 };
 
 const showWeatherData = (searchText) => {
-  getOpenWeatherMapData(searchText)
+  getCurrentDayData(searchText)
     .then((result) => {
-      dom.domString(result);
+      dom.domStrang(result);
     })
     .catch((err) => {
       console.error('nope, no data for you', err);
