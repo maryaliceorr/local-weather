@@ -1,16 +1,25 @@
 const openWeatherMap = require('./openWeatherMap');
 
-const enterKeypress = () => {
+const clickEvents = () => {
   $(document).keypress((e) => {
     if (e.key === 'Enter') {
-      const searchZips = $('#search-bar').val();
-      openWeatherMap.showWeatherData(searchZips);
+      validZip();
     }
   });
+  $('#current-day-button').click(validZip);
+};
+
+const validZip = () => {
+  const searchZips = $('#search-bar').val();
+  if (searchZips.length === 5 && $.isNumeric(searchZips)) {
+    openWeatherMap.showWeatherData(searchZips);
+  } else {
+    alert('Zip code not valid. Please enter valid zip code.');
+  }
 };
 
 const initializer = () => {
-  enterKeypress();
+  clickEvents();
 };
 
 module.exports = {
