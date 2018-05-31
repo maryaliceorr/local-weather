@@ -11,5 +11,19 @@ body {
 
 .navbar-brand {
   font-size: 30px;
-  color: goldenrod;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  margin: 20px;
+  font-size: 24px;
+}
+
+input {
+  font-size: 24px;
 }

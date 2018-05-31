@@ -2,7 +2,7 @@ const openWeatherMap = require('./openWeatherMap');
 
 const apiKeys = () => {
   return new Promise ((resolve,reject) => {
-    $.ajax('./db/apiKeys')
+    $.ajax('./db/apiKeys.json')
       .done((data) => {
         resolve(data.apiKeys);
       })
@@ -15,7 +15,7 @@ const apiKeys = () => {
 const getThemKeys = () => {
   apiKeys()
     .then((results) => {
-      openWeatherMap.setKeys(results.openWeatherMap.apiKeys);
+      openWeatherMap.setKeys(results.weather.apiKey);
     })
     .catch((err) => {
       console.error('nope, no keys today', err);
