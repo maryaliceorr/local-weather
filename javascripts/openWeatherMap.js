@@ -8,7 +8,7 @@ const setKeys = (key) => {
 
 const getCurrentDayData = (zip) => {
   return new Promise((resolve, reject) => {
-    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${openWeatherMapKey}`)
+    $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${openWeatherMapKey}&units=imperial`)
       .done((result) => {
         resolve(result);
       })
@@ -18,7 +18,19 @@ const getCurrentDayData = (zip) => {
   });
 };
 
-const showWeatherData = (searchText) => {
+const getFiveDayData = (zip) => {
+  return new Promise((resolve, reject) => {
+    $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&appid=${openWeatherMapKey}&units=imperial`)
+      .done((result) => {
+        resolve(result.list);
+      })
+      .fail((err) => {
+        reject(err);
+      });
+  });
+};
+
+const showCurrentDayData = (searchText) => {
   getCurrentDayData(searchText)
     .then((result) => {
       dom.domStrang(result);
@@ -28,7 +40,18 @@ const showWeatherData = (searchText) => {
     });
 };
 
+const showFiveDayData = (searchText) => {
+  getFiveDayData(searchText)
+    .then((result) => {
+      dom.domStrangTwo(result.list);
+    })
+    .catch((err) => {
+      console.error('nope, no data for you', err);
+    });
+};
+
 module.exports = {
   setKeys,
-  showWeatherData,
+  showCurrentDayData,
+  showFiveDayData,
 };
