@@ -43,7 +43,7 @@ const showCurrentDayData = (searchText) => {
 const showFiveDayData = (searchText) => {
   getFiveDayData(searchText)
     .then((result) => {
-      dom.domStrangTwo(result.list);
+      dom.domStrangTwo(result);
     })
     .catch((err) => {
       console.error('nope, no data for you', err);

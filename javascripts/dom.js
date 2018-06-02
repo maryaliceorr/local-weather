@@ -2,7 +2,7 @@
 const domStrang = (weather) => {
   let strang = '';
   strang += `<div id="current-day-card" class="col-md-4 col-md-offset-4">`;
-  strang +=   `<div class="thumbnail">`;
+  strang +=   `<div class="thumbnail current-day-card">`;
   strang +=     `<div class="caption">`;
   strang +=     `<h2>${weather.name}</h2>`;
   strang +=     `<img src="https://openweathermap.org/img/w/${weather.weather[0].icon}.png">`;
@@ -23,16 +23,15 @@ const domStrang = (weather) => {
 const domStrangTwo = (weatherArray) => {
   let strang = '';
   weatherArray.forEach((weather) => {
-
     strang += `<div class="col-sm-6 col-md-4">`;
-    strang +=   `<div class="thumbnail">`;
+    strang +=   `<div class="thumbnail five-day-cards">`;
     strang +=     `<div class="caption">`;
-    strang +=     `<h3>${weather.list.city.name}</h3>`;
-    strang +=     `<img src="https://openweathermap.org/img/w/${weather.list.weather[0].icon}.png">`;
+    // strang +=     `<h3>${weather.city.name}</h3>`;
+    strang +=     `<img src="https://openweathermap.org/img/w/${weather.weather[0].icon}.png">`;
     strang +=     `<h5><strong>Temperature: </strong>${weather.main.temp}</h5>`;
-    strang +=     `<h5><strong>Conditions: </strong>${weather.list.weather.description}</h5>`;
-    strang +=     `<h5><strong>Air Pressure: </strong>${weather.list.main.pressure}</h5>`;
-    strang +=     `<h5><strong>Wind Speed: </strong>${weather.list.wind.speed}</h5>`;
+    strang +=     `<h5><strong>Conditions: </strong>${weather.weather.description}</h5>`;
+    strang +=     `<h5><strong>Air Pressure: </strong>${weather.main.pressure}</h5>`;
+    strang +=     `<h5><strong>Wind Speed: </strong>${weather.wind.speed}</h5>`;
     strang +=     `<p>`;
     strang +=     `</div>`;
     strang +=   `</div>`;

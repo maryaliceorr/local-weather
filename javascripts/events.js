@@ -1,5 +1,7 @@
 const openWeatherMap = require('./openWeatherMap');
 
+let chosenZip = -1;
+
 const clickEvents = () => {
   $(document).keypress((e) => {
     if (e.key === 'Enter') {
@@ -10,19 +12,28 @@ const clickEvents = () => {
 };
 
 const fiveDayData = () => {
-  openWeatherMap.showFiveDayData();
+  const finalZip = getZip();
+  openWeatherMap.showFiveDayData(finalZip);
 };
 
 const fiveDayClickEvent = () => {
-  $('#five-day-button').click(fiveDayData);
+  $(document).on('click', '#five-day-button', fiveDayData);
+};
+
+const setZip = (zip) => {
+  chosenZip = zip;
+};
+
+const getZip = () => {
+  return chosenZip;
 };
 
 const validZip = () => {
   const searchZips = $('#search-bar').val();
   if (searchZips.length === 5 && $.isNumeric(searchZips)) {
     openWeatherMap.showCurrentDayData(searchZips);
-    console.error('stuff', fiveDayData(searchZips));
-    // fiveDayClickEvent(searchZips);
+    fiveDayClickEvent();
+    setZip(searchZips);
   } else {
     alert('Zip code not valid. Please enter valid zip code.');
   }
