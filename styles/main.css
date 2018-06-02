@@ -34,3 +34,16 @@ input {
 #current-day-card {
   text-align: center;
 }
+
+.five-day-cards {
+  background-color: lightgray;
+  color: #5C6266;
+
+}
+
+.current-day-card {
+  background-color: #393C3E;
+}
+.current-day-card h2, h3 {
+  color: white;
+}
