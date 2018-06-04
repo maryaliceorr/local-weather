@@ -35,15 +35,44 @@ input {
   text-align: center;
 }
 
-.five-day-cards {
-  background-color: lightgray;
-  color: #5C6266;
+.navbar-header {
+  width: 100%;
+}
 
+.five-day-cards {
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border: 10px solid white;
+  text-align: center;
+  height: 500px;
+}
+
+.five-day-cards h3 {
+color: white;
 }
 
 .current-day-card {
-  background-color: #393C3E;
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border: 10px solid white;
 }
-.current-day-card h2, h3 {
+.current-day-card h1, h2, h3 {
   color: white;
+}
+
+img {
+  height: 18%;
+  width: 18%;
 }
