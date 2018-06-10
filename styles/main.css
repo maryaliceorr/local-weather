@@ -76,3 +76,7 @@ img {
   height: 18%;
   width: 18%;
 }
+
+.starred {
+  color: goldenrod;
+}
