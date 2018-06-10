@@ -13,8 +13,8 @@ const savedWeather = (saveWeather) => {
       url: `${firebaseConfig.databaseURL}/weather.json`,
       data: JSON.stringify(saveWeather),
     })
-      .done((specifickey) => {
-        resolve(specifickey);
+      .done((specificWeatherKey) => {
+        resolve(specificWeatherKey);
       })
       .fail((error) => {
         reject(error);

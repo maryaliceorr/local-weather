@@ -18,7 +18,7 @@ const getThemKeys = () => {
     .then((results) => {
       openWeatherMap.setKeys(results.weather.apiKey);
       firebaseApi.setConfig(results.firebaseKeys);
-      firebase.initializeApp(results.firebase);
+      firebase.initializeApp(results.firebaseKeys);
     })
     .catch((err) => {
       console.error('nope, no keys today', err);
