@@ -10,19 +10,121 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-default">
-        <div class="navbar-header">
-          <div class="navbar-brand text-center">Local Weather</div>
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Local Weather</a>
+    </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a id="authentication">Authentication</a>
+        </li>
+        <li>
+          <a class="hide" id="my-saved">My Saved Forecasts</a>
+        </li>
+        <li>
+          <a class="hide" id="search-weather">Search</a>
+        </li>
+        <li>
+          <a class="hide" id="logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<!-- Authentication Page -->
+<div id="authentication-page">
+  <div id="login-form">
+    <h1 class="text-center">Sign In</h1>
+    <form class="form-horizontal col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+      <div id="signin-error" class="hide alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span id="signin-error-msg"></span>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input value="m.a.orr17@gmail.com" type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input value="Password123" type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <a href="#" id="register-link">Need to Register?</a>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" id="signin-btn" class="btn btn-default">Sign in</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="registration-form" class="hide">
+    <h1 class="text-center">Registration</h1>
+    <form class="form-horizontal col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+      <div id="register-error" class="hide alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span id="register-error-msg"></span>
+      </div>
+      <div class="form-group">
+        <label for="registerEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="registerEmail" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="registerPassword" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <a href="#" id="signin-link">Go to Login</a>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" id="register-btn" class="btn btn-default">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Search Page -->
+  <div id="search-page" class="hide">
+  <h1 class="text-center">Search</h1>
   <div class="input-group col-sm-6 col-sm-offset-3">
       <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
       <input id="search-bar" type="text" class="form-control" placeholder="ZIP CODE HERE" aria-describedby="basic-addon1">
   </div>
 <div class="row center">
-  <button type="button" id="current-day-button" class="col-sm-2 btn btn-info">Current Day</button>
+  <button type="button" id="current-day-button" class="col-sm-2 btn btn-info">Current Day Forecast</button>
+  <button type="button" id="saved-forecast-button" class="col-sm-2 btn btn-warning">View Saved Forecast</button>
 </div>
 
 <div class="row">
@@ -31,8 +133,18 @@
 <div class="center row">
 
   <div id="5-day-holder" class="center"></div>
-
+  <div id="saved-weather" class="center"></div>
 </div>
+</div>
+
+<!-- My Weather Forecast Page -->
+
+<div id="my-weather-page">
+  <h1>My Weather Forecasts</h1>
+</div>
+
+
+
 
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
