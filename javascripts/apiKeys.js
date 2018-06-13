@@ -1,5 +1,6 @@
 const openWeatherMap = require('./openWeatherMap');
 const firebaseApi = require('./firebaseApi');
+const auth = require('./auth');
 
 const apiKeys = () => {
   return new Promise ((resolve,reject) => {
@@ -19,8 +20,16 @@ const getThemKeys = () => {
       openWeatherMap.setKeys(results.weather.apiKey);
       firebaseApi.setConfig(results.firebaseKeys);
       firebase.initializeApp(results.firebaseKeys);
-    })
-    .catch((err) => {
+      firebase
+        .auth()
+        .signInWithEmailandPassword
+        .catch((error) => {
+          $('#login-error-message').text(error.message);
+          $('#login-error').removeClass('hide');
+          console.error(error.message);
+        });
+      auth.checkLogin();
+    }).catch((err) => {
       console.error('nope, no keys today', err);
     });
 };

@@ -4,6 +4,25 @@ const dom = require('./dom');
 
 let chosenZip = -1;
 
+const myPages = () => {
+  $(document).click((e) => {
+    if (e.target.id === 'authentication') {
+      $('#my-weather-page').addClass('hide');
+      $('#search-page').addClass('hide');
+      $('#authentication-page').removeClass('hide');
+    } else if (e.target.id === 'my-saved') {
+      $('#my-weather-page').removeClass('hide');
+      $('#search-page').addClass('hide');
+      $('#authentication-page').addClass('hide');
+      getWeatherForecast();
+    } else if (e.target.id === 'search-weather') {
+      $('#my-weather-page').addClass('hide');
+      $('#search-page').removeClass('hide');
+      $('#authentication-page').addClass('hide');
+    }
+  });
+};
+
 const clickEvents = () => {
   $(document).keypress((e) => {
     if (e.key === 'Enter') {
@@ -46,12 +65,12 @@ const saveWeatherForecast = () => {
     const weatherCardToAdd = $(e.target).closest('.five-day-cards');
     const weatherToAdd = {
       isSaved: false,
-      dayAndTime: weatherCardToAdd.find('.five-day-date').text(),
-      temp: weatherCardToAdd.find('.five-day-temp').text(),
-      icon: weatherCardToAdd.find('.five-day-icon').text(),
-      conditions: weatherCardToAdd.find('.five-day-condition').text(),
-      airPressure: weatherCardToAdd.find('.five-day-pressure').text(),
-      windSpeed: weatherCardToAdd.find('.five-day-speed').text(),
+      dayAndTime: weatherCardToAdd.find('.five-weather-date').text(),
+      temp: weatherCardToAdd.find('.five-weather-temp').text(),
+      icon: weatherCardToAdd.find('.five-weather-icon').data(),
+      conditions: weatherCardToAdd.find('.five-weather-condition').text(),
+      airPressure: weatherCardToAdd.find('.five-weather-pressure').text(),
+      windSpeed: weatherCardToAdd.find('.five-weather-speed').text(),
     };
     firebaseApi.savedWeather(weatherToAdd)
       .then(() => {
@@ -73,7 +92,14 @@ const getWeatherForecast = () => {
     });
 };
 
+const deleteForecastFromCollection = () => {
+  $(document).on('click', '.deleteForecastFromCollection', (e) => {
+    const forecastToDelete = $(e.target).closest('.five-day-cards').data()
+  })
+}
+
 const initializer = () => {
+  myPages();
   clickEvents();
   fiveDayClickEvent();
   saveWeatherForecast();

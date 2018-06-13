@@ -7,6 +7,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  color: white;
 }
 
 .navbar-brand {
@@ -79,4 +80,12 @@ img {
 
 .starred {
   color: goldenrod;
+}
+
+.white-label {
+  color: white;
+}
+
+.navbar-right a{
+  font-size: 30px;
 }

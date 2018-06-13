@@ -1,8 +1,16 @@
+const openWeatherMap = require('./openWeatherMap');
+const firebaseApi = require('./firebaseApi');
+const dom = require('./dom');
+
 let firebaseConfig = {};
-const uid = '';
+let uid = '';
 
 const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
+};
+
+const setUID = (newId) => {
+  uid = newId;
 };
 
 const savedWeather = (saveWeather) => {
@@ -44,8 +52,25 @@ const getSavedWeather = (saveWeather) => {
   });
 };
 
+const deleteForecast = (weatherCardId) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'DELETE',
+      url: `${firebaseConfig.databaseURL}/weather/${weatherCardId}.json`,
+    })
+      .done(() => {
+        resolve();
+      })
+      .fail((error) => {
+        reject(error);
+      });
+  });
+};
+
 module.exports = {
+  setUID,
   setConfig,
   savedWeather,
   getSavedWeather,
+  deleteForecast,
 };

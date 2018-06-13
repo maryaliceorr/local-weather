@@ -20,14 +20,17 @@ const domStrang = (weather) => {
   printToDom('#current-day-holder', strang);
 };
 
-const domStrangTwo = (weatherArray) => {
+const domStrangTwo = (weatherArray, forecastCollectionStatus = false) => {
   let strang = '';
   weatherArray.forEach((weather, i) => {
     if (i % 8 === 0) {
       strang += `<div class="col-sm-2 center">`;
       strang +=   `<div class="thumbnail five-day-cards">`;
       strang +=     `<div class="caption">`;
-      strang +=     `<span class="glyphicon glyphicon-star starred"></span>`;
+      if (forecastCollectionStatus) {
+        strang += `<a class="btn deleteForecastFromCollection">X</a>`;
+      }
+      strang +=     `<a class="btn starred"><span class="glyphicon glyphicon-star"></span></a>`;
       strang +=     `<h3 id="${weather.dt_txt}" class="five-weather-date"><strong>Date and Time: </strong>${weather.dt_txt}</h3>`;
 
       strang +=     `<img src="https://openweathermap.org/img/w/${weather.weather[0].icon}.png" class="five-weather-icon">`;
